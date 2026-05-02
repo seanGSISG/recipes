@@ -1,6 +1,7 @@
 ---
 title: "Chicken Parmesan"
 description: "Crispy panko-breaded cutlets, marinara, melted mozzarella — the comfort-food classic."
+image: "/images/recipes/chicken-parmesan.jpg"
 servings: 4
 prepTime: "20 min"
 cookTime: "25 min"
