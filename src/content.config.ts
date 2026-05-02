@@ -27,6 +27,7 @@ const recipes = defineCollection({
     tags: z.array(z.string()).default([]),
     sources: z.array(source).optional(),
     ingredients: z.array(ingredient).min(1),
+    instructions: z.array(z.string().min(1)).min(1),
     createdAt: z.coerce.date(),
   }),
 });

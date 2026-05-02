@@ -1,7 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import { formatQty } from '../../lib/format';
+import Layout from '../../../layouts/Layout.astro';
+import { formatQty } from '../../../lib/format';
+import { inlineMd } from '../../../lib/md';
 
 export async function getStaticPaths() {
   const recipes = await getCollection('recipes');
@@ -38,6 +39,14 @@ const d = recipe.data;
     )}
   </div>
 
+  <a class="cook-cta" href={`/recipes/${recipe.id}/cook/`}>
+    <span class="cook-cta-icon" aria-hidden="true">▶</span>
+    <span class="cook-cta-text">
+      <strong>Cook</strong>
+      <small>Step-by-step view, screen stays on, tap times to set timers</small>
+    </span>
+  </a>
+
   <h2>Shopping list</h2>
   <ul class="ingredients" id="ingredients">
     {d.ingredients.map((ing, i) => (
@@ -53,6 +62,13 @@ const d = recipe.data;
       </li>
     ))}
   </ul>
+
+  <h2>Instructions</h2>
+  <ol class="instructions">
+    {d.instructions.map((step) => (
+      <li set:html={inlineMd(step)}></li>
+    ))}
+  </ol>
 
   <div class="prose">
     <Content />
@@ -70,35 +86,9 @@ const d = recipe.data;
 </Layout>
 
 <script>
-  import { formatQty } from '../../lib/format';
+  import { attachScaler } from '../../../lib/scale';
 
-  const scaler = document.querySelector<HTMLElement>('.scaler');
-  if (scaler) {
-    const base = parseInt(scaler.dataset.baseServings ?? '1', 10);
-    const valueEl = document.getElementById('servings-value')!;
-    const items = document.querySelectorAll<HTMLLIElement>('#ingredients li');
-    let current = base;
-
-    function render() {
-      valueEl.textContent = String(current);
-      const ratio = current / base;
-      items.forEach((li) => {
-        const rawQty = li.dataset.qty;
-        if (!rawQty) return;
-        const qtyEl = li.querySelector<HTMLElement>('.qty-value');
-        if (!qtyEl) return;
-        const scaled = parseFloat(rawQty) * ratio;
-        qtyEl.textContent = formatQty(scaled);
-      });
-    }
-
-    scaler.querySelector('[data-act="inc"]')?.addEventListener('click', () => {
-      if (current < 99) { current += 1; render(); }
-    });
-    scaler.querySelector('[data-act="dec"]')?.addEventListener('click', () => {
-      if (current > 1) { current -= 1; render(); }
-    });
-  }
+  attachScaler();
 
   document.querySelectorAll<HTMLInputElement>('#ingredients input[type="checkbox"]').forEach((cb) => {
     cb.addEventListener('change', () => {

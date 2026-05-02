@@ -185,6 +185,39 @@ footer.site {
 
 .meta-strip strong { color: var(--fg); font-weight: 500; }
 
+.cook-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.cook-cta:hover { transform: translateY(-1px); filter: brightness(1.05); text-decoration: none; }
+
+.cook-cta-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  padding-left: 3px;
+}
+
+.cook-cta-text { display: flex; flex-direction: column; gap: 0.1rem; }
+.cook-cta-text strong { font-size: 1.1rem; font-weight: 600; }
+.cook-cta-text small { font-size: 0.82rem; opacity: 0.85; }
+
 .scaler {
   display: inline-flex;
   align-items: center;

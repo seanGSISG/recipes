@@ -23,6 +23,15 @@ ingredients:
   - { qty: 1,    unit: "tbsp", item: "unsalted butter" }
   - { qty: null, unit: null,   item: "dry white wine", note: "splash, optional, for deglazing" }
   - { qty: null, unit: null,   item: "kosher salt and freshly cracked black pepper", note: "to taste" }
+instructions:
+  - "**Boil the pasta.** Bring a large pot of heavily salted water to a boil. Cook the fettuccine until just al dente. Reserve about ½ cup of the starchy pasta water before draining."
+  - "**Sauté the mushrooms.** While the water boils, melt the butter in a large skillet over medium-high heat. Add mushrooms in a single layer and cook **undisturbed for 3–4 minutes** until deeply golden, then stir and finish browning another minute."
+  - "**Add aromatics and prosciutto.** Lower the heat to medium. Stir in shallot and prosciutto; sauté 2 minutes until shallot is translucent and prosciutto is fragrant. Add garlic in the final 30 seconds."
+  - "**Deglaze (optional).** Add a splash of dry white wine and scrape up any browned bits from the bottom of the pan. Let it cook off, ~30 seconds."
+  - "**Build the cream sauce.** Pour in the heavy cream and add the peas. Bring to a gentle simmer and cook 2–3 minutes until slightly thickened."
+  - "**Emulsify.** Off heat, stir in Parmesan until melted and glossy. If the sauce is too thick, loosen with reserved pasta water 1–2 tablespoons at a time until silky."
+  - "**Combine.** Toss the drained fettuccine directly into the skillet, using tongs to coat every strand. Season generously with cracked black pepper. Taste before salting — prosciutto and Parmesan are already salty."
+  - "**Serve.** Plate immediately. Top with extra Parmesan and more black pepper."
 createdAt: 2026-05-02
 ---
 
@@ -30,17 +39,6 @@ createdAt: 2026-05-02
 - Large pot for pasta
 - Large skillet (12-inch)
 - Tongs
-
-## Instructions
-
-1. **Boil the pasta.** Bring a large pot of heavily salted water to a boil. Cook the fettuccine until just al dente. Reserve about ½ cup of the starchy pasta water before draining.
-2. **Sauté the mushrooms.** While the water boils, melt the butter in a large skillet over medium-high heat. Add mushrooms in a single layer and cook **undisturbed for 3–4 minutes** until deeply golden, then stir and finish browning another minute.
-3. **Add aromatics and prosciutto.** Lower the heat to medium. Stir in shallot and prosciutto; sauté 2 minutes until shallot is translucent and prosciutto is fragrant. Add garlic in the final 30 seconds.
-4. **Deglaze (optional).** Add a splash of dry white wine and scrape up any browned bits from the bottom of the pan. Let it cook off, ~30 seconds.
-5. **Build the cream sauce.** Pour in the heavy cream and add the peas. Bring to a gentle simmer and cook 2–3 minutes until slightly thickened.
-6. **Emulsify.** Off heat, stir in Parmesan until melted and glossy. If the sauce is too thick, loosen with reserved pasta water 1–2 tablespoons at a time until silky.
-7. **Combine.** Toss the drained fettuccine directly into the skillet, using tongs to coat every strand. Season generously with cracked black pepper. Taste before salting — prosciutto and Parmesan are already salty.
-8. **Serve.** Plate immediately. Top with extra Parmesan and more black pepper.
 
 ## Notes
 

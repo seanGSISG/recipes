@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import CookLayout from '../../../layouts/CookLayout.astro';
+import { formatQty } from '../../../lib/format';
+import { inlineMd } from '../../../lib/md';
+import { wrapTimes } from '../../../lib/timer-detect';
+
+export async function getStaticPaths() {
+  const recipes = await getCollection('recipes');
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.id },
+    props: { recipe },
+  }));
+}
+
+const { recipe } = Astro.props;
+const d = recipe.data;
+
+// Build per-step ingredient matches at build time. We match an ingredient
+// to a step when any "significant" word from the ingredient name (>3 chars)
+// appears as a substring of the step text. Misses are fine — the user can
+// glance at the full shopping list on the detail page.
+function matchIngredients(stepText: string) {
+  const lower = stepText.toLowerCase();
+  return d.ingredients.filter((ing) => {
+    const item = ing.item.toLowerCase();
+    const words = item.split(/\s+/).filter((w) => w.length > 3);
+    if (words.length === 0) return lower.includes(item);
+    return words.some((w) => {
+      const stem = w.replace(/(es|s)$/, '');
+      return lower.includes(w) || lower.includes(stem);
+    });
+  });
+}
+
+const usesPerStep = d.instructions.map(matchIngredients);
+---
+<CookLayout title={d.title} description={d.description}>
+  <div class="cook-shell">
+    <header class="cook-header">
+      <a href={`/recipes/${recipe.id}/`} class="exit" aria-label="Exit Cook Mode">×</a>
+      <span class="title">{d.title}</span>
+      <span class="scaler" data-base-servings={d.servings}>
+        <button type="button" data-act="dec" aria-label="Fewer servings">−</button>
+        <span class="value">{d.servings}</span>
+        <button type="button" data-act="inc" aria-label="More servings">+</button>
+      </span>
+    </header>
+    <div class="cook-progress" id="progress" style="--progress: 0%"></div>
+    <main class="cook-body" id="body">
+      {d.instructions.map((step, i) => (
+        <section class="cook-step" data-step={i} hidden={i > 0}>
+          <div class="step-counter">Step {i + 1} of {d.instructions.length}</div>
+          <p class="step-text" set:html={wrapTimes(inlineMd(step), step)}></p>
+          {usesPerStep[i].length > 0 && (
+            <aside class="step-uses">
+              <h3>Uses</h3>
+              <ul>
+                {usesPerStep[i].map((ing) => (
+                  <li data-qty={ing.qty ?? ''} data-unit={ing.unit ?? ''}>
+                    {ing.qty !== null && (
+                      <span class="qty">
+                        <span class="qty-value">{formatQty(ing.qty)}</span>{ing.unit ? ` ${ing.unit}` : ''}
+                      </span>
+                    )}
+                    {ing.item}
+                    {ing.note && <span class="note"> ({ing.note})</span>}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
+        </section>
+      ))}
+      <section class="cook-step cook-done" data-step={d.instructions.length} hidden>
+        <div>
+          <h2>Done!</h2>
+          <p>That's the recipe. Enjoy.</p>
+          <div class="actions">
+            <a href={`/recipes/${recipe.id}/`} class="primary">Back to recipe</a>
+            <button type="button" class="restart">Cook again</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="cook-footer">
+      <button type="button" class="prev" aria-label="Previous step">← Prev</button>
+      <span class="step-pill">Step <span id="step-num">1</span> of {d.instructions.length}</span>
+      <button type="button" class="next" aria-label="Next step">Next →</button>
+    </footer>
+    <div class="timers-panel" id="timers"></div>
+  </div>
+</CookLayout>
+
+<script>
+  import { initCook } from '../../../lib/cook-runtime';
+  initCook();
+</script>

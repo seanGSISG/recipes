@@ -14,6 +14,11 @@ ingredients:
   - { qty: 2,    unit: null,   item: "bay leaves" }
   - { qty: 1,    unit: "tsp",  item: "black peppercorns" }
   - { qty: null, unit: null,   item: "flaky salt", note: "to finish" }
+instructions:
+  - "**Combine.** Place peeled garlic cloves in a saucepan. Add thyme, bay, and peppercorns. Pour in oil to fully submerge — top up if needed."
+  - "**Cook low and slow.** Bring to the barest simmer over low heat (tiny bubbles only — never a boil). Cook 45–60 minutes until cloves are completely soft and pale gold."
+  - "**Cool.** Remove from heat and let cool completely in the oil."
+  - "**Store.** Transfer cloves and oil to a clean jar. Keep refrigerated up to 2 weeks. The infused oil is gold — use it everywhere."
 createdAt: 2026-05-01
 ---
 
@@ -21,13 +26,6 @@ createdAt: 2026-05-01
 - Small heavy saucepan or oven-safe ramekin
 - Fine-mesh strainer (if straining)
 - Clean glass jar for storage
-
-## Instructions
-
-1. **Combine.** Place peeled garlic cloves in a saucepan. Add thyme, bay, and peppercorns. Pour in oil to fully submerge — top up if needed.
-2. **Cook low and slow.** Bring to the barest simmer over low heat (tiny bubbles only — never a boil). Cook 45–60 minutes until cloves are completely soft and pale gold.
-3. **Cool.** Remove from heat and let cool completely in the oil.
-4. **Store.** Transfer cloves and oil to a clean jar. Keep refrigerated up to 2 weeks. The infused oil is gold — use it everywhere.
 
 ## Notes
 
