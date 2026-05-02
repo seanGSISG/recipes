@@ -1,0 +1,289 @@
+:root {
+  --bg: #fafaf7;
+  --fg: #1a1a1a;
+  --muted: #6b6b66;
+  --line: #e5e3dc;
+  --accent: #b04a2f;
+  --card-bg: #ffffff;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --radius: 8px;
+  --max-w: 760px;
+  --max-w-grid: 1100px;
+  font-synthesis: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15140f;
+    --fg: #ececea;
+    --muted: #9a978c;
+    --line: #2a2924;
+    --accent: #e07a5f;
+    --card-bg: #1d1c17;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { font-weight: 600; line-height: 1.25; margin: 1.5em 0 0.5em; }
+h1 { font-size: 2rem; margin-top: 0; }
+h2 { font-size: 1.35rem; border-bottom: 1px solid var(--line); padding-bottom: 0.3em; }
+h3 { font-size: 1.1rem; }
+
+p { margin: 0.6em 0; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+header.site {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+header.site .inner {
+  max-width: var(--max-w-grid);
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header.site a.brand {
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+main { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+main.wide { max-width: var(--max-w-grid); }
+
+footer.site {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+/* Index grid */
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls input[type="search"] {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--fg);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.chip {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--fg);
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  color: var(--fg);
+  transition: transform 0.12s ease;
+}
+
+.card:hover { transform: translateY(-2px); text-decoration: none; }
+
+.card .thumb {
+  aspect-ratio: 4 / 3;
+  background: var(--line);
+  background-size: cover;
+  background-position: center;
+}
+
+.card .body {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card .body h3 { font-size: 1.05rem; margin: 0; }
+.card .body .meta { font-size: 0.8rem; color: var(--muted); }
+
+/* Recipe detail */
+.hero {
+  aspect-ratio: 16 / 9;
+  background: var(--line);
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+}
+
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.meta-strip strong { color: var(--fg); font-weight: 500; }
+
+.scaler {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.5rem;
+  background: var(--card-bg);
+}
+
+.scaler button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--fg);
+  font-family: inherit;
+}
+
+.scaler button:hover { background: var(--line); }
+.scaler button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.scaler .value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 1.5ch;
+  text-align: center;
+}
+
+.ingredients {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.4rem 1.5rem;
+}
+
+.ingredients li {
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--line);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.ingredients li input[type="checkbox"] {
+  flex-shrink: 0;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.ingredients .qty {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+.ingredients li.checked label { text-decoration: line-through; opacity: 0.55; }
+.ingredients li label { cursor: pointer; flex: 1; }
+.ingredients .note { color: var(--muted); font-size: 0.9em; }
+
+.instructions {
+  padding-left: 1.4rem;
+  counter-reset: step;
+}
+
+.instructions li {
+  padding: 0.5rem 0 0.75rem 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.sources {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  background: var(--line);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  margin-right: 0.3rem;
+  color: var(--muted);
+}
+
+@media print {
+  header.site, footer.site, .controls, .scaler button, .ingredients li input[type="checkbox"] { display: none !important; }
+  body { background: white; color: black; font-size: 12pt; }
+  main { max-width: 100%; padding: 0; }
+  .hero { aspect-ratio: 21 / 9; max-height: 2in; page-break-inside: avoid; }
+  a { color: black; text-decoration: none; }
+  .scaler { border: none; padding: 0; }
+}

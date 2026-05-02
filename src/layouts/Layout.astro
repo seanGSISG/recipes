@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  wide?: boolean;
+}
+
+const { title, description, image, wide = false } = Astro.props;
+const fullTitle = title === 'Recipes' ? 'Recipes' : `${title} — Recipes`;
+const ogImage = image ? new URL(image, Astro.site ?? Astro.url).href : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <meta property="og:title" content={fullTitle} />
+    {description && <meta property="og:description" content={description} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <header class="site">
+      <div class="inner">
+        <a href="/" class="brand">recipes.lsdmt.me</a>
+        <nav><a href="/">All recipes</a></nav>
+      </div>
+    </header>
+    <main class={wide ? 'wide' : ''}>
+      <slot />
+    </main>
+    <footer class="site">Personal recipe collection.</footer>
+  </body>
+</html>
